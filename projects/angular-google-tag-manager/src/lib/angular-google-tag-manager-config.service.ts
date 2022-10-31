@@ -1,6 +1,9 @@
 import { Inject, Injectable, InjectionToken, Optional } from '@angular/core';
 import { GoogleTagManagerConfig } from './google-tag-manager-config';
 
+export const GoogleTagManagerConfigService =
+  new InjectionToken<GoogleTagManagerConfig>('google-tag-manager-config');
+
 // adapted from https://github.com/auth0/auth0-angular#dynamic-configuration
 @Injectable({ providedIn: 'root' })
 export class GoogleTagManagerConfiguration {
@@ -13,7 +16,7 @@ export class GoogleTagManagerConfiguration {
   constructor(
     @Optional()
     @Inject(GoogleTagManagerConfigService)
-    googleTagManagerConfig?: GoogleTagManagerConfig
+      googleTagManagerConfig?: GoogleTagManagerConfig
   ) {
     if (googleTagManagerConfig) {
       this.set(googleTagManagerConfig);
@@ -28,6 +31,3 @@ export class GoogleTagManagerConfiguration {
     return this._googleTagManagerConfig;
   }
 }
-
-export const GoogleTagManagerConfigService =
-  new InjectionToken<GoogleTagManagerConfig>('google-tag-manager-config');
